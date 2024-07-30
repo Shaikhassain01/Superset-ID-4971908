@@ -1,0 +1,59 @@
+//Strategy Interface
+
+public interface PaymentStrategy {
+    void pay(double amount);
+}
+
+//Concrete Strategy
+
+public class CreditCardPayment implements PaymentStrategy {
+    @Override
+    public void pay(double amount) {
+        System.out.println("Paying " + amount + " using credit card");
+    }
+}
+
+//Concrete Strategy
+
+public class PayPalPayment implements PaymentStrategy {
+    @Override
+    public void pay(double amount) {
+        System.out.println("Paying " + amount + " using PayPal");
+    }
+}
+
+//Context Class
+
+public class PaymentContext {
+    private PaymentStrategy paymentStrategy;
+
+    public PaymentContext(PaymentStrategy paymentStrategy) {
+        this.paymentStrategy = paymentStrategy;
+    }
+
+    public void executeStrategy(double amount) {
+        paymentStrategy.pay(amount);
+    }
+}
+
+
+//Test Class
+
+public class PaymentTest {
+    public static void main(String[] args) {
+        PaymentStrategy creditCardPayment = new CreditCardPayment();
+        PaymentStrategy payPalPayment = new PayPalPayment();
+
+        PaymentContext paymentContext = new PaymentContext(creditCardPayment);
+        paymentContext.executeStrategy(100.0);
+
+        paymentContext = new PaymentContext(payPalPayment);
+        paymentContext.executeStrategy(200.0);
+    }
+}
+
+//Output:
+
+Paying 100.0 using credit card
+Paying 200.0 using PayPal
+
