@@ -1,0 +1,90 @@
+public class Computer {
+    private String cpu;
+    private int ram;
+    private String storage;
+
+    // Private constructor that takes the Builder as a parameter
+    private Computer(Builder builder) {
+        this.cpu = builder.cpu;
+        this.ram = builder.ram;
+        this.storage = builder.storage;
+    }
+
+    // Static nested Builder class
+    public static class Builder {
+        private String cpu;
+        private int ram;
+        private String storage;
+
+        public Builder withCpu(String cpu) {
+            this.cpu = cpu;
+            return this;
+        }
+
+        public Builder withRam(int ram) {
+            this.ram = ram;
+            return this;
+        }
+
+        public Builder withStorage(String storage) {
+            this.storage = storage;
+            return this;
+        }
+
+        public Computer build() {
+            return new Computer(this);
+        }
+    }
+
+    // Getters for attributes
+    public String getCpu() {
+        return cpu;
+    }
+
+    public int getRam() {
+        return ram;
+    }
+
+    public String getStorage() {
+        return storage;
+    }
+}
+
+public class ComputerTest {
+    public static void main(String[] args) {
+
+        Computer basicComputer = new Computer.Builder()
+                .withCpu("Intel Core i3")
+                .withRam(8)
+                .withStorage("256GB SSD")
+                .build();
+
+        Computer highEndComputer = new Computer.Builder()
+                .withCpu("Intel Core i9")
+                .withRam(32)
+                .withStorage("1TB HDD")
+                .build();
+
+        System.out.println("Basic Computer:");
+        System.out.println("CPU: " + basicComputer.getCpu());
+        System.out.println("RAM: " + basicComputer.getRam() + "GB");
+        System.out.println("Storage: " + basicComputer.getStorage());
+
+        System.out.println("\nHigh-End Computer:");
+        System.out.println("CPU: " + highEndComputer.getCpu());
+        System.out.println("RAM: " + highEndComputer.getRam() + "GB");
+        System.out.println("Storage: " + highEndComputer.getStorage());
+    }
+}
+
+
+//Output:
+Basic Computer:
+CPU: Intel Core i3
+RAM: 8GB
+Storage: 256GB SSD
+
+High-End Computer:
+CPU: Intel Core i9
+RAM: 32GB
+Storage: 1TB HDD
