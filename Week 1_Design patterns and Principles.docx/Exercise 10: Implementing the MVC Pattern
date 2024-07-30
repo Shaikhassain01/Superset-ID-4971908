@@ -1,0 +1,100 @@
+//Model Class
+
+public class Student {
+    private String name;
+    private int id;
+    private double grade;
+
+    public Student(String name, int id, double grade) {
+        this.name = name;
+        (link unavailable) = id;
+        this.grade = grade;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        (link unavailable) = id;
+    }
+
+    public double getGrade() {
+        return grade;
+    }
+
+    public void setGrade(double grade) {
+        this.grade = grade;
+    }
+}
+
+//View Class
+
+public class StudentView {
+    public void displayStudentDetails(Student student) {
+        System.out.println("Student Name: " + student.getName());
+        System.out.println("Student ID: " + student.getId());
+        System.out.println("Student Grade: " + student.getGrade());
+    }
+}
+
+//Controller Class
+
+public class StudentController {
+    private Student model;
+    private StudentView view;
+
+    public StudentController(Student model, StudentView view) {
+        this.model = model;
+        this.view = view;
+    }
+
+    public void setStudentName(String name) {
+        model.setName(name);
+    }
+
+    public void setStudentId(int id) {
+        model.setId(id);
+    }
+
+    public void setStudentGrade(double grade) {
+        model.setGrade(grade);
+    }
+
+    public void updateView() {
+        view.displayStudentDetails(model);
+    }
+}
+
+//Test Class
+
+public class Main {
+    public static void main(String[] args) {
+        Student model = new Student("John Doe", 1, 85.0);
+        StudentView view = new StudentView();
+        StudentController controller = new StudentController(model, view);
+
+        controller.updateView();
+
+        controller.setStudentName("Jane Doe");
+        controller.setStudentGrade(90.0);
+        controller.updateView();
+    }
+}
+
+//Output:
+
+Student Name: John Doe
+Student ID: 1
+Student Grade: 85.0
+Student Name: Jane Doe
+Student ID: 1
+Student Grade: 90.0
