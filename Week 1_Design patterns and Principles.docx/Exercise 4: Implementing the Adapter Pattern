@@ -1,0 +1,62 @@
+//Target Interface
+public interface PaymentProcessor {
+    void processPayment(String amount);
+}
+
+//Adaptee Class
+public class PayPalGateway {
+    public void makePayment(String amount) {
+        System.out.println("Processing payment of " + amount + " through PayPal");
+    }
+}
+
+//Adaptee Class
+public class StripeGateway {
+    public void chargeCard(String amount) {
+        System.out.println("Charging card for " + amount + " through Stripe");
+    }
+}
+//Adapter Class
+public class PayPalAdapter implements PaymentProcessor {
+    private PayPalGateway paypalGateway;
+
+    public PayPalAdapter() {
+        paypalGateway = new PayPalGateway();
+    }
+
+    @Override
+    public void processPayment(String amount) {
+        paypalGateway.makePayment(amount);
+    }
+}
+
+//Adapter Class
+public class StripeAdapter implements PaymentProcessor {
+    private StripeGateway stripeGateway;
+
+    public StripeAdapter() {
+        stripeGateway = new StripeGateway();
+    }
+
+    @Override
+    public void processPayment(String amount) {
+        stripeGateway.chargeCard(amount);
+    }
+}
+//Test Class
+
+public class PaymentProcessorTest {
+    public static void main(String[] args) {
+        PaymentProcessor paypalAdapter = new PayPalAdapter();
+        paypalAdapter.processPayment("100.00");
+
+        PaymentProcessor stripeAdapter = new StripeAdapter();
+        stripeAdapter.processPayment("200.00");
+    }
+}
+
+//Output:
+
+Processing payment of 100.00 through PayPal
+Charging card for 200.00 through Stripe
+
