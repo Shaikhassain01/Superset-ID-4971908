@@ -106,19 +106,6 @@ public class FactoryMethodTest {
     }
 }
 
-FactoryMethodPatternExample
-│
-├── src
-│   ├── Document.java
-│   ├── WordDocument.java
-│   ├── PdfDocument.java
-│   ├── ExcelDocument.java
-│   ├── DocumentFactory.java
-│   ├── WordDocumentFactory.java
-│   ├── PdfDocumentFactory.java
-│   ├── ExcelDocumentFactory.java
-│   └── FactoryMethodTest.java
-└── ...
 //Output
 Opening Word document.
 Saving Word document.
