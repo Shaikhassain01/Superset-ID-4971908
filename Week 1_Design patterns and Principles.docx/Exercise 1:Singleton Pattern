@@ -33,7 +33,6 @@ public class SingletonTest {
         }
     }
 }
-
 //The output of the SingletonTest class will be:
 
 Log: This is the first log message.
