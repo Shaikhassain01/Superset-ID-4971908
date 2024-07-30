@@ -1,0 +1,82 @@
+//Command Interface
+
+public interface Command {
+    void execute();
+}
+
+//Concrete Command
+
+public class LightOnCommand implements Command {
+    private Light light;
+
+    public LightOnCommand(Light light) {
+        this.light = light;
+    }
+
+    @Override
+    public void execute() {
+        light.turnOn();
+    }
+}
+
+
+//Concrete Command
+
+public class LightOffCommand implements Command {
+    private Light light;
+
+    public LightOffCommand(Light light) {
+        this.light = light;
+    }
+
+    @Override
+    public void execute() {
+        light.turnOff();
+    }
+}
+
+//Invoker Class
+
+public class RemoteControl {
+    private Command command;
+
+    public void setCommand(Command command) {
+        this.command = command;
+    }
+
+    public void pressButton() {
+        command.execute();
+    }
+}
+
+//Receiver Class
+
+public class Light {
+    public void turnOn() {
+        System.out.println("Light is on");
+    }
+
+    public void turnOff() {
+        System.out.println("Light is off");
+    }
+}
+
+//Test Class
+
+public class CommandTest {
+    public static void main(String[] args) {
+        Light light = new Light();
+        RemoteControl remoteControl = new RemoteControl();
+
+        remoteControl.setCommand(new LightOnCommand(light));
+        remoteControl.pressButton();
+
+        remoteControl.setCommand(new LightOffCommand(light));
+        remoteControl.pressButton();
+    }
+}
+
+//Output:
+
+Light is on
+Light is off
